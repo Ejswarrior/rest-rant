@@ -2,21 +2,29 @@ const React = require('react')
 const Defut = require('./default')
 
 
-function placez(data){
+function places(data){
   
         let placesFormatted = data.places.map((place) => {
             return (
-              <div>
+              <div className='col-sm-6'>
                 <h2>{place.name}</h2>
+                <p className='text-Center'>
+                  {places.Cuisines}
+                </p>
                 <img src={place.pic} alt={place.name}/>
+                <p className='text-center'>
+                  Located in {place.city}, {place.state}
+                </p>
               </div>
             )
           })
           return (
             <Defut>
                 <main>
-                    <h1>PLACES INDEX PAGE</h1>
+                    <h1>Places to Rant or Rave About</h1>
+                    <div className =''>
                     {placesFormatted}
+                    </div>
                 </main>
             </Defut>
         )
@@ -26,4 +34,4 @@ function placez(data){
 
 
 
-module.exports = placez
+module.exports = places
