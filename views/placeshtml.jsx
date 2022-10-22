@@ -2,7 +2,7 @@ const React = require('react')
 const Defut = require('./default')
 
 
-function places(data){
+function placez(data){
   
         let placesFormatted = data.places.map((place) => {
             return (
@@ -26,4 +26,4 @@ function places(data){
 
 
 
-module.exports = places
+module.exports = placez

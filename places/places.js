@@ -15,6 +15,6 @@ let places = [{
   pic: 'http://placekitten.com/250/250'
 }]
 
-    res.render(`places`, {places})
+    res.render(`placeshtml`, {places})
 })
 module.exports = router

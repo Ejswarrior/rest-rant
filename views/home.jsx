@@ -7,6 +7,11 @@ function home(){
         <Defut>
             <main>
                 <h1>Home</h1>
+
+                <a href='/places'>
+                    <button className ='btnPrimary'> Places Page</button>
+                </a>
+                
             </main>
         </Defut>
     )
