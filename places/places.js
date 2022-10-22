@@ -1,27 +1,25 @@
 const router = require('express').Router()
-
+const places = require('../models/modPlaces.js')
 
 router.get(`/`, (req,res) => {
-let place = [{
-  name: 'H-Thai-ML',
-  city: 'Seattle',
-  state: 'WA',
-  cuisines: 'Thai, Pan-Asian',
-  pic: '/images/idk.jpg'
-}, {
-  name: 'Coding Cat Cafe',
-  city: 'Phoenix',
-  state: 'AZ',
-  cuisines: 'Coffee, Bakery',
-  pic: '/images/codingCatCafe.jpg'
-}]
-
-    res.render(`placeshtml`, {place})
+    res.render(`placeshtml`, {places})
 })
 router.post('/', (req, res) => {
-  console.log(req.body)
-  res.send('POST /places')
+  
+  if (!req.body.pic) {
+    // Default image if one is not provided
+    req.body.pic = 'http://placekitten.com/400/400'
+  }
+  if (!req.body.city) {
+    req.body.city = 'Anytown'
+  }
+  if (!req.body.state) {
+    req.body.state = 'USA'
+  }
+  places.push(req.body)
+  res.redirect('/places')
 })
+
 
 
 router.get('/new', (req, res) =>{
