@@ -4,6 +4,7 @@ const places = require('../models/modPlaces.js')
 router.get(`/`, (req,res) => {
     res.render(`placeshtml`, {places})
 })
+
 router.post('/', (req, res) => {
   
   if (!req.body.pic) {
@@ -25,6 +26,34 @@ router.post('/', (req, res) => {
 router.get('/new', (req, res) =>{
   res.render('new')
 })
+
+router.get('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if(!places[id]){
+    res.render('error404')
+  }
+  else {
+    res.render('show', { place: places[id], id})
+  }
+})
+
+router.delete('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    places.splice(id, 1)
+    res.redirect('/places')
+  }
+})
+
 
 
 

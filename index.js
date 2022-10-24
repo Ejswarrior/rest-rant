@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const override = require('method-override')
 
 const app = express()
 
@@ -9,6 +10,7 @@ app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
+app.use(override('_method'))
 
 
 app.use(`/places`, require(`./places/places`))
