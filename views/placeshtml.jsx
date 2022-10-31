@@ -7,7 +7,7 @@ function places(data){
         let placesFormatted = data.places.map((place, index) => {
             return (
               <div className='col-sm-6'>
-                <a href={`/places/${index}`}>
+                <a href={`/places/${place.id}`}>
                 <h2>{place.name}</h2>
                 </a>
                 <p className='text-Center'>
