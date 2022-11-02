@@ -11,8 +11,9 @@ function show (data) {
             <p> Not rated</p>
 
             <h2>Description</h2>
-            <p> A place for food</p>
-
+            <p>{data.place.showEstablished}</p>
+            <h3>Serving {data.place.cuisnes}</h3>
+            
 
             <a href={`/places/${data.id}/edit`} className="btn btn-warning"> Edit</a>  
                 <form method="POST" action={`/places/${data.id}?_method=DELETE`}> 
@@ -20,7 +21,6 @@ function show (data) {
                     Delete
                 </button>
                 </form>     
-
           </main>
         </Def>
     )
