@@ -1,7 +1,7 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 
-module.exports.Place = require('./modPlaces')
+module.exports.Comment = require('./comments')
 const { Schema } = mongoose
 
 const placeSchema = new mongoose.Schema({
@@ -14,14 +14,13 @@ const placeSchema = new mongoose.Schema({
       type: Number,
       min: [1673, 'Surely not that old?!'],
       max: [new Date().getFullYear(), 'Hey, this year is in the future!']
-    }
+    },
+    comments: [{type: Schema.Types.ObjectId, ref:'Comment'}]
   })
   
 
 
-  placeSchema.methods.showEstablished = function() {
-    return `${this.name} has been serving ${this.city}, ${this.state} since ${this.founded}.`
-  }
+
   
 const Place = mongoose.model('Place', placeSchema)
 module.exports = Place

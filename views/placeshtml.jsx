@@ -3,7 +3,7 @@ const Defut = require('./default')
 
 
 function places(data){
-  
+  console.log(data.places)
         let placesFormatted = data.places.map((place, index) => {
             return (
               <div className='col-sm-6'>
