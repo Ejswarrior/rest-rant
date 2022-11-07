@@ -22,18 +22,13 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id',(req, res) =>{
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
+router.put('/:id',async (req, res) =>{
+  let reviewUpdate = await db.findByIdAndUpdate(req.params.id, req.body)
+  res.redirect(`/places/${req.params.id}`)
+  .catch(err => {
     res.render('error')
-  }
-  else if(!places[id]){
-    res.render('error')
-  }
-  else {
-    places[id] = req.body
-    res.redirect(`/places/${id}`)
-  }
+  })
+
 })
 
 
@@ -83,18 +78,12 @@ router.post('/:id', (req,res) => {
 })
 
 
-router.delete('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-    res.render('error404')
-  }
-  else if (!places[id]) {
-    res.render('error404')
-  }
-  else {
-    places.splice(id, 1)
-    res.redirect('/places')
-  }
+router.delete('/:id', async(req, res) => {
+  let deleteRant = await db.findByIdAndDelete(req.params.id)
+  res.redirect('/places')
+  .catch(err => {
+    res.render('error')
+  })
 })
 
 

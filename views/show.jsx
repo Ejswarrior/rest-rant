@@ -12,10 +12,28 @@ function show (data) {
                     <h3>
                       <stong>- {c.author}</stong>
                     </h3>
-                    <h4>Rating: {c.stars}</h4>
+                    <h4>Rating: {rating}</h4>
                   </div>
                 )
             }
+
+            let rating = (
+              <h3 className="inactive">
+                Not yet rated
+              </h3>
+            )
+            if (data.place.comments.length) {
+              let sumRatings = data.place.comments.reduce((tot, c) => {
+                return tot + c.stars
+              }, 0)
+             
+                let averageRating = Math.round(sumRatings / data.place.comments.length)
+                let stars = ''
+                for (let i = 0; i < averageRating; i++) {
+                  stars += 'â­ï¸'
+                }
+              }
+                   
         
         
 
@@ -34,7 +52,7 @@ function show (data) {
             
 
             <a href={`/places/${data.place.id}/edit`} className="btn btn-warning"> Edit</a>  
-                <form method="POST" action={`/places/${data.id}?_method=DELETE`}> 
+                <form method="POST" action={`/places/${data.id}/comment/${c.id}?_method=DELETE`}> 
                 <button type="submit" className="btn btn-danger">
                     Delete
                 </button>
